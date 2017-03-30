@@ -19,5 +19,10 @@ Assuming, we want to use the Amber99sb force field, the following files would be
 `cat ./PolyglycerolModeler/gmx_topology/aminoacids.hdb >> ~/my-gromacs-top/amber99sb.ff/aminoacids.hdb`<br />
 `cat ./PolyglycerolModeler/gmx_topology/aminoacids.rtp >> ~/my-gromacs-top/amber99sb.ff/aminoacids.rtp`<br />
 
-In addition, in "~/my-gromacs-top/specbond.dat", increase the number in the first line by 32 which is the number of newly added special bonds.
+In addition, in `~/my-gromacs-top/specbond.dat`, increase the number in the first line by 32 which is the number of newly added special bonds.
+
+Usage
+-----
+
+coming soon
 
