@@ -1,0 +1,25 @@
+GCL    5
+1	2	H	O	CA  CB 
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+1   2   HG1 OG1 CB  CA
+2   3   HG2 CG2 CB  OG1
+GCA    4
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+1   2   HG1 OG1 CB  CA
+2   3   HG2 CG2 CB  OG1
+GCB    4
+1   2	H   O   CA  CB 
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCX    3
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCR    4
+2   6   HA  CA  O   CB
+2   6   HG2 CG2 CB  OD1
+2   6   HG3 CG3 CB  CD2
+3   4   HD2 CD2 CG3 CB
