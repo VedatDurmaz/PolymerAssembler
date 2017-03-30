@@ -1,5 +1,56 @@
 # PolyglycerolModeler
-A Python tool constructing 3D models of polyglycerol polymers with a user-defined degree of branches ranging from linear and hyperbranched to dendritic. The PDB coordinate file comes with a topology/parameter file according to the AMBER force field and ready for simulations with Gromacs.
+
+A Python tool constructing 3D models of polyglycerol with a user-defined degree of branches ranging from linear up to hyperbranched and dendritic polymers. After the set of provided topology/parameter files according to the AMBER force field has been integrated into the respective force field subdirectory of the Gromacs installation topology file system, the final PDB coordinates file constructed by this tool is immediately ready for simulations with Gromacs. Charges were determined using the AM1-BCC method (AmberTool Antechamber) and were only slightly fitted in order to generally yield 0 overall polymer charge. As a consequence, no time-consuming recalculation of high-level partial atomic charges is necessary.
+
+
+How PolyglycerolModeler works
+-----------------------------
+
+For the polyglycerol (PG) polymer, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L}  has been defined from which a new polymer of size N (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
+
+|Unit| function                          | indegree | outdegree |
+|----|-----------------------------------|----------|-----------|
+|GCR | designated root element of G      | 0        | 3         |
+|GCX | branching unit                    | 1        | 2         |
+|GCA | linearly extending unit of type A | 1        | 1         |
+|GCB | linearly extending unit of type B | 1        | 1         |
+|GCL | terminal (leaf) element           | 1        | 0         |
+
+Using that set of five non-physical building blocks derived from glycerol it is possible to build PG polymers with any degree of branching ranging from linear and hyperbranched sequences up to 100% branched dendrimers. Starting with a single root element GCR, the central list L of available binding sites is initialized with three entries (due to indegree 0 and outdegree 3 associated with GCR). With each iteration over that list, another unit is attached to the current one of these sites and the list is updated accordingly. The decision of which unit to choose next is steered through a transition probability matrix P specifying the probability p_ij that block type j is attached to one of the free binding sites of block type i. As consequence, P also affects the extend to which the polymer will be branched. You can produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and fully branched (=dendritic) PG polymers.
+
+As an example, in case of an entirely branched polymer (dendrimer), P might look like this
+
+`mmR = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
+`mmX = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
+`mmA = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
+`mmB = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
+`mmL = np.array( (0.0, 0.0, 0.0, 0.0, 0.0) )`<br />
+
+That is, due to P_iX=1.0, any type i of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
+
+In case of a somehow hyperbranched PG, one would rather choose values such as
+
+`mmR = np.array( (0.00, 0.78, 0.10, 0.10, 0.02) )`<br />
+`mmX = np.array( (0.00, 0.60, 0.15, 0.15, 0.10) )`<br />
+`mmA = np.array( (0.00, 0.70, 0.10, 0.10, 0.10) )`<br />
+`mmB = np.array( (0.00, 0.70, 0.10, 0.10, 0.10) )`<br />
+`mmL = np.array( (0.00, 0.00, 0.00, 0.00, 0.00) )`<br />
+
+A linear polymer:
+
+`mmR = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
+`mmX = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
+`mmA = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
+`mmB = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
+`mmL = np.array( (0.0, 0.0, 0.0, 0.0, 0.0) )`<br />
+
+The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
+
+Further technical details are available in the following article that should also be used as a reference:
+
+Vedat Durmaz. *Markov model-based polymer assembly from force field-parameterized building blocks*. Journal of Computer-Aided Molecular Design, 29:225-232, 2015.
+
+
 
 Prerequisites
 -------------
@@ -37,6 +88,4 @@ In addition, increase the number in the first line of `~/my-gromacs-top/specbond
 
 Usage
 -----
-
-coming soon
 
