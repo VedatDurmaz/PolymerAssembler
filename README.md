@@ -34,12 +34,13 @@ As an example, in case of an entirely branched polymer (dendrimer), P might look
 where the row as well as column order corresponds to the order of the units in the tably above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}=1.0* (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
 
 In case of a somehow hyperbranched PG, one would rather choose values such as
+
 `transmatrix:`<br />
-    `[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
-    `[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
-    `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-    `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-    `[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
+   `[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
+   `[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
+   `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+   `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+   `[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
 
 A linear polymer:
 `transmatrix:`<br />
