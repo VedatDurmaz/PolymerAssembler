@@ -1,12 +1,17 @@
-# PolyglycerolModeler
+# PolymerAssembler
 
-A Python tool constructing 3D models of polyglycerol with a user-defined degree of branches ranging from linear up to hyperbranched and dendritic polymers. After the set of provided topology/parameter files according to the AMBER force field has been integrated into the respective force field subdirectory of the Gromacs installation topology file system, the final PDB coordinates file constructed by this tool is immediately ready for simulations with Gromacs. Charges were determined using the AM1-BCC method (AmberTool Antechamber) and were only slightly fitted in order to generally yield 0 overall polymer charge. As a consequence, no time-consuming recalculation of high-level partial atomic charges is necessary.
+A Python tool constructing 3D models of common polymers yet including various polyglycerol (PG) and soon polyethylen types with a user-defined degree of branches ranging from linear up to hyperbranched and dendritic polymers. The resulting PDB file lacking hydrogen atoms must undergo a parameterization step. For the use of an Amber force field in Gromacs simulations, a set of of Amber topology/parameter files are provided that need to be integrated into the respective force field's topology subdirectory of the Gromacs installation. Afterwards, the final PDB coordinates file constructed by this tool is immediately ready for Amber-parameterization and simulations using Gromacs. Charges were determined using the AM1-BCC method (AmberTool Antechamber) and were only slightly fitted in order to generally yield 0 formal polymer charge. As a consequence, no time-consuming recalculation of high-level partial atomic charges is necessary. The software also generates an image of the polymer graph using the Graphviz library.
+ 
 
+How PolymerAssembler works
+--------------------------
 
-How PolyglycerolModeler works
------------------------------
+The main settings falling to the user are listed in the YAML configuration file `config_user.yml`. At the top of the file, the user choses the type of polymer. Currently supported types are:
 
-For the polyglycerol (PG) polymer, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L}  has been defined from which a new polymer of size N (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
+- `branchedPG` (*n=5* units): linear, hyperbranched or dendritic polyglycerol polymers branched to a specified degree
+- `linearPG_meth-eth` (*n=6* units): linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer. Due to the chiral character of these glycerols central carbon atom, there are two methylized and two ethylized units. 
+
+Depending on the choice of the polymer type, the transition probabilities from one building block to another need to be specified in the same config file. The size of the squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
 
 |Unit| function                          | indegree | outdegree |
 |----|-----------------------------------|----------|-----------|
@@ -20,29 +25,29 @@ Using that set of five non-physical building blocks derived from glycerol it is 
 
 As an example, in case of an entirely branched polymer (dendrimer), P might look like this
 
-`mmR = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
-`mmX = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
-`mmA = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
-`mmB = np.array( (0.0, 1.0, 0.0, 0.0, 0.0) )`<br />
-`mmL = np.array( (0.0, 0.0, 0.0, 0.0, 0.0) )`<br />
+`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
+`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
+`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
+`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
+`[0.0, 0.0, 0.0, 0.0, 0.0]`<br />
 
-That is, due to P_iX=1.0, any type i of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
+where the row as well as column order corresponds to the order of the units in the tably above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}=1.0* (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
 
 In case of a somehow hyperbranched PG, one would rather choose values such as
 
-`mmR = np.array( (0.00, 0.78, 0.10, 0.10, 0.02) )`<br />
-`mmX = np.array( (0.00, 0.60, 0.15, 0.15, 0.10) )`<br />
-`mmA = np.array( (0.00, 0.70, 0.10, 0.10, 0.10) )`<br />
-`mmB = np.array( (0.00, 0.70, 0.10, 0.10, 0.10) )`<br />
-`mmL = np.array( (0.00, 0.00, 0.00, 0.00, 0.00) )`<br />
+`[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
+`[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
+`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+`[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
 
 A linear polymer:
 
-`mmR = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
-`mmX = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
-`mmA = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
-`mmB = np.array( (0.0, 0.0, 1.0, 0.0, 0.0) )`<br />
-`mmL = np.array( (0.0, 0.0, 0.0, 0.0, 0.0) )`<br />
+`[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
+`[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
+`[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
+`[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
+`[0.0, 0.0, 0.0, 0.0, 0.0]`<br />
 
 The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
 
@@ -57,16 +62,16 @@ Prerequisites
 
 #### Required libraries
 
-On a Ubuntu 16.04 Linux system, two additional libraries, `python-pygraphviz` and `python-biopython` are required in order to be able to run the Python script. On such a Debian-based system one would execute
+On a Ubuntu 16.04 Linux system, three additional libraries, `python-pygraphviz`, `python-biopython`, and `python-yaml` are required in order to be able to run the Python script. On such a Debian-based system one would execute
 
-`sudo apt install python-pygraphviz python-biopython`
+`sudo apt install python-pygraphviz python-biopython python-yaml`
 
 to install both packages and all further dependencies.
 
 
 #### Modify Gromacs topology files for usage with particular Amber force field
 
-If you want to use the generated PDB coordinates file as input for an AMBER parameterization step using the `gmx pdb2gmx` command, you will need to modify a couple of files of that particular AMBER force field in Gromacs topology directory (usually in `/usr/share/gromacs/top`). You might want to copy the Gromacs topology directory to an own user directory before
+If you want to use the generated PDB coordinates file as input for an AMBER parameterization step using the `gmx pdb2gmx` command, you will need to modify a couple of files of that particular AMBER force field in Gromacs topology directory (usually in `/usr/share/gromacs/top`). It is then possible to quickly parameterize the polymer on the basis of preparameterized units as in analogy to polypeptides. You might want to copy the Gromacs topology directory to an own user directory before
 
 `cp -a /usr/share/gromacs/top ~/my-gromacs-top`
 
@@ -88,4 +93,3 @@ In addition, increase the number in the first line of `~/my-gromacs-top/specbond
 
 Usage
 -----
-
