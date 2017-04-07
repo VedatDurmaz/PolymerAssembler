@@ -25,6 +25,7 @@ Using that set of five non-physical building blocks derived from glycerol it is 
 
 As an example, in case of an entirely branched polymer (dendrimer), P might look like this
 
+`transmatrix:`<br />
 `[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
 `[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
 `[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
@@ -36,13 +37,14 @@ where the row as well as column order corresponds to the order of the units in t
 In case of a somehow hyperbranched PG, one would rather choose values such as
 
 `transmatrix:`<br />
-   `[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
-   `[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
-   `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-   `[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-   `[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
+`[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
+`[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
+`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
+`[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
 
 A linear polymer:
+
 `transmatrix:`<br />
 `[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
 `[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
