@@ -97,7 +97,7 @@ In addition, increase the number in the first line of `~/my-gromacs-top/specbond
 Usage
 -----
 
-Example creating a polymer consisting of 50 units 
+Example command creating a polymer consisting of 50 units 
 
 `../polymer.py 50 polymer.pdb polymer.eps`
 
