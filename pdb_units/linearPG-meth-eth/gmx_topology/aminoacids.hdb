@@ -1,0 +1,34 @@
+GCT    5
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2
+1   2   HG1 OG1 CB  CA
+2   3   HG2 CG2 CB  OG1
+3   4   HD  CD  O   CA 
+GCM    4
+3   4   HD  CD  O   CA
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCN    4
+3   4   HD  CD  O   CA
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCE    5
+3   4   HE  CE  CD  O
+2   6   HD  CD  O   CE
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCF    5
+3   4   HE  CE  CD  O
+2   6   HD  CD  O   CE
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   3   HG2 CG2 CB  OG1
+GCI    5
+2   6   HA  CA  O   CB
+1   5   HB  CB  CA  OG1  CG2 
+2   6   HG2 CG2 CB  OD1
+3   4   HD2 CD2 O   CA
+1   2   HD1 OD1 CG2 CB

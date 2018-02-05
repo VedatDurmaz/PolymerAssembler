@@ -1,0 +1,211 @@
+
+; left hand capping unit:  HO-CH2-CHOH-CH2-> +1 
+[ GCT ]
+ [ atoms ]
+     CA   CT        0.126400	1
+     HA1  H1        0.043700	2
+     HA2  H1        0.043700	3
+     O    OS       -0.425600	4
+     CB   CT        0.141100	5
+     HB   H1        0.064700	6
+     OG1  OH       -0.604800	7
+     HG1  HO        0.419000	8
+     CG2  CT        0.093400	9
+     HG21 H1        0.057200   10
+     HG22 H1        0.057200   11
+     CD   CT        0.117700   12
+     HD1  H1        0.034033   13
+     HD2  H1        0.034033   14
+     HD3  H1        0.034033   15
+ [ bonds ]
+     CD   HD1
+     CD   HD2
+     CD   HD3
+     CD   O
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB
+     CB   OG1
+     OG1  HG1
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+
+; linearly extending unit:  (-C2) -1, O-CH2-CH(O->-1)-CH2-> +1 (+O, +O1) 
+[ GCM ]
+ [ atoms ]
+     CA   CT        0.1270428571    1
+     HA1  H1        0.0443428571    2
+     HA2  H1        0.0443428571    3
+     O    OS       -0.4319571429    4
+     CB   CT        0.1417428571    5
+     HB   H1        0.0743428571    6
+     OG1  OS       -0.4429571429    7
+     CG2  CT        0.1010428571    8
+     HG21 H1        0.0588428571    9
+     HG22 H1        0.0588428571   10
+     CD   CT        0.1153428571   11
+     HD1  H1        0.0363428571   12
+     HD2  H1        0.0363428571   13
+     HD3  H1        0.0363428571   14
+ [ bonds ]
+     CD   HD1
+     CD   HD2
+     CD   HD3
+     CD   O
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB
+     CB   OG1
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+
+; linearly extending unit:  (-C2) -1, O-CH2-CH(O->-1)-CH2-> +1 (+O, +O1) 
+[ GCN ]
+ [ atoms ]
+     CA   CT        0.1270428571    1
+     HA1  H1        0.0443428571    2
+     HA2  H1        0.0443428571    3
+     O    OS       -0.4319571429    4
+     CB   CT        0.1417428571    5
+     HB   H1        0.0743428571    6
+     OG1  OS       -0.4429571429    7
+     CG2  CT        0.1010428571    8
+     HG21 H1        0.0588428571    9
+     HG22 H1        0.0588428571   10
+     CD   CT        0.1153428571   11
+     HD1  H1        0.0363428571   12
+     HD2  H1        0.0363428571   13
+     HD3  H1        0.0363428571   14
+ [ bonds ]
+     CD   HD1
+     CD   HD2
+     CD   HD3
+     CD   O
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB
+     CB   OG1
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+
+; linearly extending unit:  (-C2) -1, O-CH2-CH(O->-1)-CH2-> +1 (+O, +O1) 
+[ GCE ]
+ [ atoms ]
+     CA   CT        0.1278706471    1
+     HA1  H1        0.0421706471    2
+     HA2  H1        0.0421706471    3
+     O    OS       -0.4281293529    4
+     CB   CT        0.1385706471    5
+     HB   H1        0.0731706471    6
+     OG1  OS       -0.4351293529    7
+     CG2  CT        0.0988706471    8
+     HG21 H1        0.0601706471    9
+     HG22 H1        0.0601706471   10
+     CD   CT        0.1318706471   11
+     HD1  H1        0.0251706471   12
+     HD2  H1        0.0251706471   13
+     CE   CT       -0.0986293529   14
+     HE1  HC        0.0455036471   15
+     HE2  HC        0.0455036471   16
+     HE3  HC        0.0455036471   17
+ [ bonds ]
+     CE   HE1
+     CE   HE2
+     CE   HE3
+     CE   CD
+     CD   HD1
+     CD   HD2
+     CD   O
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB
+     CB   OG1
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+; linearly extending unit:  (-C2) -1, O-CH2-CH(O->-1)-CH2-> +1 (+O, +O1) 
+
+[ GCF ]
+ [ atoms ]
+     CA   CT        0.1278706471    1
+     HA1  H1        0.0421706471    2
+     HA2  H1        0.0421706471    3
+     O    OS       -0.4281293529    4
+     CB   CT        0.1385706471    5
+     HB   H1        0.0731706471    6
+     OG1  OS       -0.4351293529    7
+     CG2  CT        0.0988706471    8
+     HG21 H1        0.0601706471    9
+     HG22 H1        0.0601706471   10
+     CD   CT        0.1318706471   11
+     HD1  H1        0.0251706471   12
+     HD2  H1        0.0251706471   13
+     CE   CT       -0.0986293529   14
+     HE1  HC        0.0455036471   15
+     HE2  HC        0.0455036471   16
+     HE3  HC        0.0455036471   17
+ [ bonds ]
+     CE   HE1
+     CE   HE2
+     CE   HE3
+     CE   CD
+     CD   HD1
+     CD   HD2
+     CD   O
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB
+     CB   OG1
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+; right hand capping unit:  (-C2) -1 <-O-CH2-CHOH-CH2OH
+
+[ GCI ]
+ [ atoms ]
+     O    OS       -0.428600    1
+     CA   CT        0.094400    2
+     HA1  H1        0.046200    3
+     HA2  H1        0.046200    4
+     CB   CT        0.098100    5
+     HB   H1	    0.073700    6
+     OG1  OS       -0.444600    7
+     CG2  CT        0.136400    8
+     HG21 H1        0.050700    9
+     HG22 H1        0.050700   10
+     OD1  OH       -0.598800   11
+     HD1  HO	    0.417000   12
+     CD2  CT        0.110700   13
+     HD21 H1        0.037367   14
+     HD22 H1        0.037367   15
+     HD23 H1        0.037367   16
+ [ bonds ]
+     O    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   OG1
+     CB   HB
+     CB   CG2
+     CG2  HG21
+     CG2  HG22
+     CG2  OD1
+     OD1  HD1
+     O    CD2
+     CD2  HD21
+     CD2  HD22
+     CD2  HD23
+

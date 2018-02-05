@@ -1,0 +1,130 @@
+
+
+# this file only contains settings related to the type of
+# polymer (branched PG, linear PG, branched with linker, ...)
+
+
+
+### section of branched polyglycerol polymers 
+branchedPG:
+    code_unit: ["GCR","GCX","GCA","GCB","GCL"]
+    init_unit: "GCR"
+    end_unit:  "GCL"
+    pdb_fn:
+        GCL: "pdb_units/branchedPG/pg_unit_GCL.pdb"
+        GCA: "pdb_units/branchedPG/pg_unit_GCA.pdb"
+        GCB: "pdb_units/branchedPG/pg_unit_GCB.pdb"
+        GCX: "pdb_units/branchedPG/pg_unit_GCX.pdb"
+        GCR: "pdb_units/branchedPG/pg_unit_GCR.pdb"
+    monomers:
+        GCL: 
+            out: []
+            in:  ["CG2-CB-CA"]
+        GCA: 
+            out: ["CB-CA-O"]
+            in:  ["CG2-CB-CA"] 
+        GCB: 
+            out: ["CG2-CB-OG1"]
+            in:  ["CG2-CB-CA"] 
+        GCX: 
+            out: ["CG2-CB-OG1","CB-CA-O"]
+            in:  ["CG2-CB-CA"] 
+        GCR: 
+            out: ["CB-CG2-OD1","CG3-CB-OG1","CB-CA-O"]
+            in:  [] 
+    geometry: 
+        bondLen_cCOc: 1.43
+        angle_COC: 120.0
+        angle_OCC: 109.0
+        dihedAngle: 180.0
+    code_colors:
+        GCR: "green"
+        GCX: "black"
+        GCA: "blue"
+        GCB: "red"
+        GCL: "#AFAFAF"
+        O: "blue"
+        OG1: "red"
+        OD1: "green"
+    labelG: ""
+    dirG: "True"
+    
+    
+### section of linear polyglycerol polymers with ethyl and methyl groups 
+linearPG-meth-eth:
+    code_unit: ["GCI","GCM","GCN","GCE","GCF","GCT"]
+    init_unit: "GCI"
+    end_unit:  "GCT"
+    pdb_fn:
+        GCI: "pdb_units/linearPG-meth-eth/pg_unit_GCI.pdb"
+        GCM: "pdb_units/linearPG-meth-eth/pg_unit_GCM.pdb"
+        GCN: "pdb_units/linearPG-meth-eth/pg_unit_GCN.pdb"
+        GCE: "pdb_units/linearPG-meth-eth/pg_unit_GCE.pdb"
+        GCF: "pdb_units/linearPG-meth-eth/pg_unit_GCF.pdb"
+        GCT: "pdb_units/linearPG-meth-eth/pg_unit_GCT.pdb"
+    monomers:
+        GCT: 
+            out: []
+            in:  ["CG2-CB-OG1"]
+        GCM: 
+            out: ["CG2-CB-OG1"]
+            in:  ["CG2-CB-OG1"] 
+        GCN: 
+            out: ["CG2-CB-OG1"]
+            in:  ["CG2-CB-OG1"] 
+        GCE: 
+            out: ["CG2-CB-OG1"]
+            in:  ["CG2-CB-OG1"] 
+        GCF: 
+            out: ["CG2-CB-OG1"]
+            in:  ["CG2-CB-OG1"]
+        GCI: 
+            out: ["CG2-CB-OG1"]
+            in:  [] 
+    geometry: 
+        bondLen_cCOc: 1.43
+        angle_COC: 120.0
+        angle_OCC: 109.0
+        dihedAngle: 180.0
+    code_colors:
+        GCI: "green"
+        GCE: "black"
+        GCF: "blue"
+        GCM: "red"
+        GCN: "cyan"
+        GCT: "#AFAFAF"
+        OG1: "black"
+    labelG: ""
+    dirG: "True"
+
+### section of linear polyethylene oxide polymers 
+linearPEO:
+    code_unit: ["EOR","EOM","EOL"]
+    init_unit: "EOR"
+    end_unit:  "EOL"
+    pdb_fn:
+        EOR: "pdb_units/linearPEO/peo_unit_EOR.pdb"
+        EOM: "pdb_units/linearPEO/peo_unit_EOM.pdb"
+        EOL: "pdb_units/linearPEO/peo_unit_EOL.pdb"
+    monomers:
+        EOL: 
+            out: []
+            in:  ["CA-CB-OD"]
+        EOM: 
+            out: ["CA-CB-OG"]
+            in:  ["CA-CB-OG"] 
+        EOR: 
+            out: ["CA-CB-OG"]
+            in:  [] 
+    geometry: 
+        bondLen_cCOc: 1.43
+        angle_COC: 120.0
+        angle_OCC: 109.0
+        dihedAngle: 180.0
+    code_colors:
+        EOR: "green"
+        EOM: "black"
+        EOL: "red"
+        OG: "black"
+    
+

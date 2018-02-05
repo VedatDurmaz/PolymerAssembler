@@ -1,0 +1,62 @@
+
+
+## This file only contains user settings related to transtion probalities
+## from one building block type to another and some other settings. Choose
+## one of the following available polymer types and adapt the corresponding
+## transition matrix below according to your personal requirements:
+##
+## "branchedPG"         5 units: dendritic/hyperbranched/linear polyglycerol (PG) polymer
+## "linearPG-meth-eth"  6 units: linear PG with methyl or ethyl attached to one primary 
+##                               hydroxy group per monomer
+## "linearPEO"          3 units: linear polyethylene oxide
+
+
+### Main settings: choice of a polymer type and randomness of sequence of site processing 
+polymer:
+    type: branchedPG           
+    shuffleSites: True
+    forceLinearChain: False
+
+
+### Graphviz: label string for image file & boolean related to directed/undirected edges
+graph:
+    dirG: True
+    labelG: ""
+
+
+### transition probability matrices
+transmatrix:
+    ## (branched) polyglycerol
+    branchedPG:
+        ## e.g. dendritic 
+        - [0, 1, 0, 0, 0]   # fromR
+        - [0, 1, 0, 0, 0]   # fromX
+        - [0, 1, 0, 0, 0]   # fromA
+        - [0, 1, 0, 0, 0]   # fromB
+        - [0, 0, 0, 0, 0]   # fromL
+
+        ## e.g. hyperbranched
+#        - [0, 0.3, 0.35, 0.35, 0.0]
+#        - [0, 0.3, 0.35, 0.35, 0.0]
+#        - [0, 0.3, 0.35, 0.35, 0.0]
+#        - [0, 0.3, 0.35, 0.35, 0.0]
+#        - [0, 0  , 0   , 0   , 0  ]
+    
+    ## linear polyglycerol with methyl:ethyl = 1:3 (natalia)
+    linearPG-meth-eth:
+        - [0, 0.375, 0.375, 0.125, 0.125, 0]
+        - [0, 0.375, 0.375, 0.125, 0.125, 0]
+        - [0, 0.375, 0.375, 0.125, 0.125, 0]
+        - [0, 0.375, 0.375, 0.125, 0.125, 0]
+        - [0, 0.375, 0.375, 0.125, 0.125, 0]
+        - [0, 0,     0,     0,     0,     0]
+   
+
+    ## linear polyethylene oxide
+    linearPEO:
+        - [0, 1, 0]   # from root R
+        - [0, 1, 0]   # from extending M
+        - [0, 0, 0]   # from leaf L
+
+
+

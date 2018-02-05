@@ -1,0 +1,122 @@
+; polyethylene oxide initinal unit
+[ EOR ]
+ [ atoms ]
+     N    N        -0.5509      1
+     H    H         0.3250      2
+     CA   CT        0.0830      3
+     HA1  H1        0.0777      4
+     HA2  H1        0.0777      5
+     CB   CT        0.1064      6
+     HB1  H1        0.0357      7
+     HB2  H1        0.0357      8
+     OG   OS       -0.4236      9
+ [ bonds ]
+     N    H
+     N    CA
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB1
+     CB   HB2
+     CB   OG
+     -C   N
+ [ impropers ]
+    -C    CA     N     H 
+
+; polyethylene oxide extending unit
+[ EOM ]
+ [ atoms ]
+     CA   CT        0.1289      1
+     HA1  H1        0.0422      2
+     HA2  H1        0.0422      3
+     CB   CT        0.1309      4
+     HB1  H1        0.0432      5
+     HB2  H1        0.0432      6
+     OG   OS       -0.4306      7
+ [ bonds ]
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB1
+     CB   HB2
+     CB   OG
+
+; polyethylene oxide terminal unit
+[ EOL ]
+ [ atoms ]
+     CA   CT        0.1319  	1
+     HA1  H1        0.0447  	2
+     HA2  H1        0.0447  	3
+     CB   CT        0.1299  	4
+     HB1  H1        0.0377  	5
+     HB2  H1        0.0377  	6
+     OD   OH       -0.6003  	7
+     HD   HO        0.4070  	8
+ [ bonds ]
+     CA   HA1
+     CA   HA2
+     CA   CB
+     CB   HB1
+     CB   HB2
+     CB   OD
+     OD   HD
+
+; reddy's dopamine amino acid for polyethylene peptide complex
+[ DPA ]
+ [ atoms ]
+   N      N           -0.5619      1
+   H      H            0.3265      2
+   CA     CT           0.0407      3
+   HA     H1           0.1317      4
+   CB     CT          -0.0521      5
+   HB1    HC           0.0587      6
+   HB2    HC           0.0587      7
+   CG     CA          -0.0963      8
+   CD1    CA          -0.1230      9
+   HD1    HA           0.1580     10
+   CE1    C            0.1131     11
+   OH2    OH          -0.4931     12
+   HH2    HO           0.4370     13
+   CZ     C            0.0451     14
+   OH1    OH          -0.5161     15
+   HH1    HO           0.4370     16
+   CE2    CA          -0.1690     17
+   HE2    HA           0.1350     18
+   CD2    CA          -0.1250     19
+   HD2    HA           0.1490     20
+   C      C            0.6491     21
+   O      O           -0.6031     22
+  [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   CD1
+    CG   CD2
+   CD1   HD1
+   CD1   CE1
+   CE1   OH1
+   OH2   HH2  
+   CE1    CZ
+    CZ   OH2
+    CZ   CE2
+   OH1   HH1
+   CE2   HE2
+   CE2   CD2
+   CD2   HD2
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H
+    CA    +N     C     O
+    CG   CE2   CD2   HD2
+    CZ   CD2   CE2   HE2
+   CE1   CE2    CZ   OH1
+   CD1    CZ   CE1   OH2
+    CG   CE1   CD1   HD1
+   CD1   CD2    CG    CB
+

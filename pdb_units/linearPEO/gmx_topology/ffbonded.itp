@@ -1,0 +1,5 @@
+[ dihedraltypes ]
+;i  j   k  l	 func      phase      kd      pn
+CA  C   C   OH       4      180.00     4.60240     2 	; reddy polyethylene oxide
+C   CA  C   OH       4      180.00     4.60240     2 	; reddy polyethylene oxide
+

@@ -1,0 +1,21 @@
+### example graph for testing purposes: {node:{parent,type,bound2site,children}}		
+myGraph = { 1: {'par': 0, 'type': 'GCR', 'site': '', 'child': set([2, 3, 4])}, \
+            2: {'par': 1, 'type': 'GCX', 'site': 'CB-CG2-OD1', 'child': set([5, 6])}, \
+            3: {'par': 1, 'type': 'GCX', 'site': 'CG2-CB-OG1', 'child': set([8, 7])}, \
+            4: {'par': 1, 'type': 'GCX', 'site': 'CB-CA-O', 'child': set([9, 10])}, \
+            5: {'par': 2, 'type': 'GCL', 'site': 'CG2-CB-OG1', 'child': set([])}, \
+            6: {'par': 2, 'type': 'GCL', 'site': 'CB-CA-O', 'child': set([])}, \
+            7: {'par': 3, 'type': 'GCL', 'site': 'CG2-CB-OG1', 'child': set([])}, \
+            8: {'par': 3, 'type': 'GCL', 'site': 'CB-CA-O', 'child': set([])}, \
+            9: {'par': 4, 'type': 'GCL', 'site': 'CG2-CB-OG1', 'child': set([])}, \
+            10: {'par': 4, 'type': 'GCL', 'site': 'CB-CA-O', 'child': set([])} \
+           }
+
+### example graph for testing purposes: {node:{parent,type,bound2site,children}}		
+myGraph = { 1: {'par': 0, 'type': 'GCR', 'site': '', 'child': set([2, 3, 4])}, \
+            2: {'par': 1, 'type': 'GCL', 'site': 'CB-CG2-OD1', 'child': set([])}, \
+            3: {'par': 1, 'type': 'GCL', 'site': 'CG2-CB-OG1', 'child': set([])}, \
+            4: {'par': 1, 'type': 'GCL', 'site': 'CB-CA-O', 'child': set([])} \
+           }
+
+
