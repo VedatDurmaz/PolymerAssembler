@@ -96,3 +96,11 @@ In addition, increase the number in the first line of `~/my-gromacs-top/specbond
 
 Usage
 -----
+
+Example creating a polymer consisting of 50 units 
+
+`../polymer.py 50 polymer.pdb polymer.eps`
+
+where a corresponding pdb file and a graph image in the eps format are generated. 
+
+To be continued ...
