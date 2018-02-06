@@ -1,15 +1,27 @@
 # PolymerAssembler
 
-A Python tool constructing 3D models of common polymers yet including various polyglycerol (PG) and soon polyethylen types with a user-defined degree of branches ranging from linear up to hyperbranched and dendritic polymers. The resulting PDB file lacking hydrogen atoms must undergo a parameterization step. For the use of an Amber force field in Gromacs simulations, a set of of Amber topology/parameter files are provided that need to be integrated into the respective force field's topology subdirectory of the Gromacs installation. Afterwards, the final PDB coordinates file constructed by this tool is immediately ready for Amber-parameterization and simulations using Gromacs. Charges were determined using the AM1-BCC method (AmberTool Antechamber) and were only slightly fitted in order to generally yield 0 formal polymer charge. As a consequence, no time-consuming recalculation of high-level partial atomic charges is necessary. The software also generates an image of the polymer graph using the Graphviz library.
- 
+PolymerAssembler is a Python-based tool designed for a quick construction of atomistic 3D polymer models useful for molecular mechanics force field simulations. Particularly, in case of branched polymers the degree of branching is influenceable through the user. The resulting PDB file initially lacks hydrogen atoms which can be easily added upon parameterization using the Gromacs command `pdb2gmx` along with its integrated AMBER force field. For this purpose, a set of files with AMBER topology/parameter definitions are provided that need to be added to the (corresponding force field's) topology (sub)directory of your local Gromacs installation. The parameterization procedure based on pre-parameterized building blocks is analogue to that of proteins based on aminoacid blocks. After an energy minimization step, the final PDB file is immediately ready for molecular dynamics simulations using Gromacs. Partial atomic charges of the units were determined using the AM1-BCC method (as implemented in the AmberTool `Antechamber`) and were only negligibly modified in order to generally fit the polymer's overall formal charge to zero. With this strategy, no time-consuming calculation of high-level partial atomic charges is necessary. The program also generates an image of the polymer graph using the Graphviz library. In its current version PolymerAssembler supports the following types of polymers:
+
+- Polyglycerol: ranging from linear to hyperbranched and dendritic polymers
+- Polyglycerol: only linear and with methyl and/or ethyl attached to the hydroxy group
+- Polyethylene oxide: linear
+
+
 
 How PolymerAssembler works
 --------------------------
 
-The main settings falling to the user are listed in the YAML configuration file `config_user.yml`. At the top of the file, the user choses the type of polymer. Currently supported types are:
+The main settings falling to the user are listed in a YAML configuration file called `config_user.yml`. At the top of the file, the user choses the type of polymer by setting the YAML variable `polymer.type` to either
 
-- `branchedPG` (*n=5* units): linear, hyperbranched or dendritic polyglycerol polymers branched to a specified degree
-- `linearPG-meth-eth` (*n=6* units): linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer. Due to the chiral character of these glycerols central carbon atom, there are two methylized and two ethylized units. 
+
+|Type| #blocks | description |
+|----|-----------------------|
+|`branchedPG` |    5    | linear, hyperbranched or dendritic polyglycerol polymers     |
+|`linearPG-meth-eth` |    6    | linear, hyperbranched or dendritic polyglycerol polymers     |
+|`branchedPG` |    5    | linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer     |
+|`linearPEO` |    3    | linear polyethylene oxide    |
+
+
 
 Depending on the choice of the polymer type, the transition probabilities from one building block to another need to be specified in the same config file. The size of the squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
 
@@ -73,7 +85,7 @@ On a Ubuntu 16.04 Linux system, three additional libraries, `python-pygraphviz`,
 to install these packages and all of their dependencies.
 
 
-#### Modify Gromacs topology files for usage with particular Amber force field
+#### Extend Amber force field in Gromacs topology directory
 
 If you want to use the generated PDB coordinates file as input for an AMBER parameterization step using the `gmx pdb2gmx` command, you will need to modify a couple of files of that particular AMBER force field in Gromacs topology directory (usually in `/usr/share/gromacs/top`). It is then possible to quickly parameterize the polymer on the basis of preparameterized units as in analogy to polypeptides. You might want to copy the Gromacs topology directory to an own user directory before
 
@@ -91,7 +103,7 @@ cat ./pdb_units/${poltype}/gmx_topology/specbond.dat >> ${GMXLIB}/specbond.dat
 cat ./pdb_units/${poltype}/gmx_topology/aminoacids.hdb >> ${GMXLIB}/amber99sb.ff/aminoacids.hdb
 cat ./pdb_units/${poltype}/gmx_topology/aminoacids.rtp >> ${GMXLIB}/amber99sb.ff/aminoacids.rtp
 ```
-In addition, increase the number in the first line of `~/my-gromacs-top/specbond.dat` by the number of newly added special bonds (lines), e.g. 32 in case of polyglycerol (polymer type "branchedPG" coming with five building blocks).
+In addition, increase the number in the first line of `${GMXLIB}/specbond.dat` by the number of newly added special bonds (lines), e.g. 32 in case of polyglycerol (polymer type "branchedPG" coming with five building blocks).
 
 
 Usage
