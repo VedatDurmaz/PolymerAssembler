@@ -85,14 +85,13 @@ and set the corresponding environment variable for Gromacs commands
 
 Assuming, we want to use the Amber99sb force field, the following files would be extended by the content of the respective files in the "gmx_topology" directory of PolymerAssembler:
 ```
-cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/residuetypes.dat >> ~/my-gromacs-top/residuetypes.dat
-cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/specbond.dat >> ~/my-gromacs-top/specbond.dat
-cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/aminoacids.hdb >> ~/my-gromacs-top/amber99sb.ff/aminoacids.hdb
-cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/aminoacids.rtp >> ~/my-gromacs-top/amber99sb.ff/aminoacids.rtp
+cd PolymerAssembler
+cat ./pdb_units/${poltype}/gmx_topology/residuetypes.dat >> ${GMXLIB}/residuetypes.dat
+cat ./pdb_units/${poltype}/gmx_topology/specbond.dat >> ${GMXLIB}/specbond.dat
+cat ./pdb_units/${poltype}/gmx_topology/aminoacids.hdb >> ${GMXLIB}/amber99sb.ff/aminoacids.hdb
+cat ./pdb_units/${poltype}/gmx_topology/aminoacids.rtp >> ${GMXLIB}/amber99sb.ff/aminoacids.rtp
 ```
 In addition, increase the number in the first line of `~/my-gromacs-top/specbond.dat` by the number of newly added special bonds (lines), e.g. 32 in case of polyglycerol (polymer type "branchedPG" coming with five building blocks).
-
-
 
 
 Usage
