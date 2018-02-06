@@ -39,30 +39,34 @@ In a YAML file called `config_user.yml` the values of *P* need to be adjusted by
 In the same config file the corresponding transition probabilities can be directly set by the user. Let's have a look at a few examples for the 5x5 matrix associated with the branched polyglycerol polymer (`branchedPG`). In case of an entirely branched polymer, a *dendrimer*, P might look like this
 ```
 transmatrix:
-    - [0.0, 1.0, 0.0, 0.0, 0.0] ()
-    - [0.0, 1.0, 0.0, 0.0, 0.0]
-    - [0.0, 1.0, 0.0, 0.0, 0.0]
-    - [0.0, 1.0, 0.0, 0.0, 0.0]
-    - [0.0, 0.0, 0.0, 0.0, 0.0]
+    branchedPG:
+        - [0.0, 1.0, 0.0, 0.0, 0.0] ()
+        - [0.0, 1.0, 0.0, 0.0, 0.0]
+        - [0.0, 1.0, 0.0, 0.0, 0.0]
+        - [0.0, 1.0, 0.0, 0.0, 0.0]
+        - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
 where the row as well as column order corresponds to the order of PG units in the table above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}*=1.0 (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row). In case of a somehow *hyperbranched* polymer, one would rather choose values such as
 ```
 transmatrix
-    - [0.00, 0.78, 0.10, 0.10, 0.02]
-    - [0.00, 0.60, 0.15, 0.15, 0.10]
-    - [0.00, 0.70, 0.10, 0.10, 0.10]
-    - [0.00, 0.70, 0.10, 0.10, 0.10]
-    - [0.00, 0.00, 0.00, 0.00, 0.00]
+    branchedPG:
+        - [0.00, 0.78, 0.10, 0.10, 0.02]
+        - [0.00, 0.60, 0.15, 0.15, 0.10]
+        - [0.00, 0.70, 0.10, 0.10, 0.10]
+        - [0.00, 0.70, 0.10, 0.10, 0.10]
+        - [0.00, 0.00, 0.00, 0.00, 0.00]
 ```
-A linear polymer:
+whereas a linear polymer could look like this
 ```
 transmatrix:
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 0.0, 0.0, 0.0]
+    branchedPG:
+        - [0.0, 0.0, 1.0, 0.0, 0.0]
+        - [0.0, 0.0, 1.0, 0.0, 0.0]
+        - [0.0, 0.0, 1.0, 0.0, 0.0]
+        - [0.0, 0.0, 1.0, 0.0, 0.0]
+        - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
+or, alternatively, with the ones in the forth column since both the third and forth column are associated with the linearly extending units GCA and GCB, respectively (indegree=outdegree).
 
 
 Prerequisites
