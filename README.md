@@ -4,7 +4,7 @@ PolymerAssembler is a Python-based tool designed for a quick construction of ato
 
 - Polyglycerol: ranging from linear to hyperbranched and dendritic polymers
 - Polyglycerol: only linear and with methyl and/or ethyl attached to the hydroxy group
-- Polyethylene oxide: linear
+- Polyethylene oxide: linear (via central glycerol oxygen) PG with methyl and/or ethyl (in random order) attached to the first oxygen of each monomer
 
 
 
@@ -14,12 +14,11 @@ How PolymerAssembler works
 The main settings falling to the user are listed in a YAML configuration file called `config_user.yml`. At the top of the file, the user choses the type of polymer by setting the YAML variable `polymer.type` to either
 
 
-|Type| #blocks | description |
-|----|-----------------------|
-|`branchedPG` |    5    | linear, hyperbranched or dendritic polyglycerol polymers     |
-|`linearPG-meth-eth` |    6    | linear, hyperbranched or dendritic polyglycerol polymers     |
-|`branchedPG` |    5    | linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer     |
-|`linearPEO` |    3    | linear polyethylene oxide    |
+|Type                | #blocks | description |
+|--------------------|-----------------------|
+|`branchedPG`        |    5    | linear/hyperbranched/dendritic polyglycerol  |
+|`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol                    |
+|`linearPEO`         |    3    | linear polyethylene oxide          |
 
 
 
