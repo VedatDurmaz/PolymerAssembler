@@ -110,8 +110,10 @@ Example command creating a polymer consisting of 50 units
 
 `../polymer.py 50 polymer.pdb polymer.eps`
 
-where a corresponding pdb file and a graph image in the eps format are generated. Having extended the Gromacs topology directory as described above, the force field parameterization would be accomplished as 
+where a corresponding pdb file and a graph representation in the eps format are generated. Having extended the Gromacs topology directory as described above, the force field parameterization would be accomplished as 
 
-`<span style="background-color: #FFFF00">gmx pdb2gmx -f polymer.pdb -o polymer_gmx.pdb -p polymer.top </span>`
+`gmx pdb2gmx -f polymer.pdb -o polymer_gmx.pdb -p polymer.top`
+
+which gives you a PDB file including hydrogens and further files needed for an MD simulation using Gromacs.
 
 To be continued ...
