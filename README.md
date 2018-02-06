@@ -13,16 +13,13 @@ How PolymerAssembler works
 
 The main settings falling to the user are listed in a YAML configuration file called `config_user.yml`. At the top of the file, the user choses the type of polymer by setting the YAML variable `polymer.type` to either
 
-
 |Type                | #blocks | description |
 |:-------------------|:--------|:------------|
-|`branchedPG`        |    5    | linear/hyperbranched/dendritic polyglycerol  |
-|`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol                    |
-|`linearPEO`         |    3    | linear polyethylene oxide          |
+|`branchedPG`        |    5    | linear/hyperbranched/dendritic polyglycerol |
+|`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol |
+|`linearPEO`         |    3    | linear polyethylene oxide |
 
-
-
-Depending on the choice of the polymer type, the transition probabilities from one building block to another need to be specified in the same config file. The size of the squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
+Depending on the polymer type choice, the corresponding transition probabilities from one building block to another need to be adjusted in the same config file according to the user's needs. The size of that squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
 
 |Unit| function                          | indegree | outdegree |
 |----|-----------------------------------|----------|-----------|
