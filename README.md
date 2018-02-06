@@ -15,7 +15,7 @@ The main settings falling to the user are listed in a YAML configuration file ca
 
 
 |Type                | #blocks | description |
-|--------------------|---------|-------------|
+|:-------------------|:--------|:------------|
 |`branchedPG`        |    5    | linear/hyperbranched/dendritic polyglycerol  |
 |`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol                    |
 |`linearPEO`         |    3    | linear polyethylene oxide          |
