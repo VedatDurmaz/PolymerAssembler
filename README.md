@@ -33,18 +33,19 @@ In a YAML file called `config_user.yml` the values of *P* need to be adjusted by
 |Type                | #blocks | description |
 |:-------------------|:--------|:------------|
 |`branchedPG`        |    5    | linear/hyperbranched/dendritic polyglycerol |
-|`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol |
+|`linearPG-meth-eth` |    6    | linear polyglycerol with methyl and/or ethyl |
 |`linearPEO`         |    3    | linear polyethylene oxide |
 
 In the same config file the corresponding transition probabilities can be directly set by the user. Let's have a look at a few examples for the 5x5 matrix associated with the branched polyglycerol polymer (`branchedPG`). In case of an entirely branched polymer, a *dendrimer*, P might look like this
 ```
 transmatrix:
     branchedPG:
-        - [0.0, 1.0, 0.0, 0.0, 0.0] (parent unit: GCR)
-        - [0.0, 1.0, 0.0, 0.0, 0.0] (parent unit: GCX)
-        - [0.0, 1.0, 0.0, 0.0, 0.0] (parent unit: GCA)
-        - [0.0, 1.0, 0.0, 0.0, 0.0] (parent unit: GCB)
-        - [0.0, 0.0, 0.0, 0.0, 0.0] (parent unit: GCL)
+        - [0.0, 1.0, 0.0, 0.0, 0.0]  (parent unit: GCR)
+        - [0.0, 1.0, 0.0, 0.0, 0.0]  (parent unit: GCX)
+        - [0.0, 1.0, 0.0, 0.0, 0.0]  (parent unit: GCA)
+        - [0.0, 1.0, 0.0, 0.0, 0.0]  (parent unit: GCB)
+        - [0.0, 0.0, 0.0, 0.0, 0.0]  (parent unit: GCL)
+(to child: GCR  GCX  GCA  GCB  GCL)  
 ```
 where both row as well as column order correspond to the order of PG units in the table above (also depicted in parentheses). Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}*=1.0 (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row). In case of a somehow *hyperbranched* polymer, one would rather choose values such as
 ```
