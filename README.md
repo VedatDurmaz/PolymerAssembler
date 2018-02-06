@@ -11,11 +11,11 @@ PolymerAssembler is a Python-based tool designed for a quick construction of ato
 How PolymerAssembler works
 --------------------------
 
-Algorithmic and technical details of PolymerAssembler are available in the following article that should also be used as a reference:
+Algorithmic and technical details of PolymerAssembler (PA) are described in the following article that should also be used as a reference:
 
 >Vedat Durmaz. *Markov model-based polymer assembly from force field-parameterized building blocks*. Journal of Computer-Aided Molecular Design, 29:225-232, 2015.
 
-Depending on the polymer type of interest, the corresponding transition probabilities from one building block to another need to be adjusted in the same config file according to the user's needs. The size of that squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
+Below, the approach is shortly sketched using the example of a branched polyglycerol (PG) polymer as focused on by the aforementioned paper. A polymer is considered as a directed and rooted graph *G*(*V*,*E*) without cycles consisting of vertices *V* and edges *E*. In case of PG, a set of *n*=5 (non-physical) glycerol building blocks, {GCR,GCX,GCA,GCB,GCL} (or {R,X,A,B,L}) come into consideration as vertices and the network of connecting edges in between depends on in and outdegrees of blocks forming the overall polymer:
 
 |Unit| function                          | indegree | outdegree |
 |:---|:----------------------------------|:---------|:----------|
@@ -25,13 +25,10 @@ Depending on the polymer type of interest, the corresponding transition probabil
 |GCB | linearly extending unit of type B | 1        | 1         |
 |GCL | terminal (leaf) element           | 1        | 0         |
 
-Using that set of five non-physical building blocks derived from glycerol it is possible to build PG polymers with any degree of branching ranging from linear and hyperbranched sequences up to 100% branched dendrimers. Starting with a single root element GCR, the central list L of available binding sites is initialized with three entries (due to indegree 0 and outdegree 3 associated with GCR). With each iteration over that list, another unit is attached to the current one of these sites and the list is updated accordingly. The decision of which unit to choose next is steered through a transition probability matrix P specifying the probability p_ij that block type j is attached to one of the free binding sites of block type i. As consequence, P also affects the extend to which the polymer will be branched. You can produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and fully branched (=dendritic) PG polymers.
+The first selected unit upon polymer construction is always the root element, GCR in case of PG, which has no parent unit to which it must be attached, therefore, its indegree is zero. However, GCR provides three unsatisfied binding sites (outdegree=3) each awaiting another block to be attached. Hence, these three sites are added to the algorithm's central data structure, a dynamic list *L* keeping track of all currently unsatisfied binding sites. With each iteration over that list, either randomly or in a first in first out fashion as defined by the user, another unit is attached to the current parent site and the list is updated accordingly. The decision about which unit to choose next is steered through a transition probability matrix *P* specifying the probability *p_ij* that block type *j* is attached to one of the open sites of block type *i*. Certainly, the size of that squared matrix is related to the number *n* of respective units. As consequence, *P* also affects the extend to which the polymer will be branched. Depending on *P*, the algorithm is able to produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and 100% branched (=dendritic) PG polymers.
 
 
-
-
-
-The main settings falling to the user are listed in a YAML configuration file called `config_user.yml`. At the top of the file, the user choses the type of polymer by setting the YAML variable `polymer.type` to either
+In a YAML file called `config_user.yml` the values of *P* need to be adjusted by the user according to his needs. First, at the top of the file, a polymer type is specified by setting the YAML variable `polymer.type` to either
 
 |Type                | #blocks | description |
 |:-------------------|:--------|:------------|
@@ -39,24 +36,16 @@ The main settings falling to the user are listed in a YAML configuration file ca
 |`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol |
 |`linearPEO`         |    3    | linear polyethylene oxide |
 
-
-
-
-
-
-
-As an example, in case of an entirely branched polymer (dendrimer), P might look like this
+In the same config file the corresponding transition probabilities can be directly set by the user. Let's have a look at a few examples for the 5x5 matrix associated with the branched polyglycerol polymer (`branchedPG`). In case of an entirely branched polymer, a *dendrimer*, P might look like this
 ```
 transmatrix:
-    - [0.0, 1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0, 0.0] ()
     - [0.0, 1.0, 0.0, 0.0, 0.0]
     - [0.0, 1.0, 0.0, 0.0, 0.0]
     - [0.0, 1.0, 0.0, 0.0, 0.0]
     - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
-where the row as well as column order corresponds to the order of the units in the tably above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}=1.0* (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
-
-In case of a somehow hyperbranched PG, one would rather choose values such as
+where the row as well as column order corresponds to the order of PG units in the table above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}*=1.0 (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row). In case of a somehow *hyperbranched* polymer, one would rather choose values such as
 ```
 transmatrix
     - [0.00, 0.78, 0.10, 0.10, 0.02]
@@ -74,11 +63,6 @@ transmatrix:
     - [0.0, 0.0, 1.0, 0.0, 0.0]
     - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
-
-The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
-
-
-
 
 
 Prerequisites
