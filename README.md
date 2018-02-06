@@ -11,6 +11,26 @@ PolymerAssembler is a Python-based tool designed for a quick construction of ato
 How PolymerAssembler works
 --------------------------
 
+Algorithmic and technical details of PolymerAssembler are available in the following article that should also be used as a reference:
+
+>Vedat Durmaz. *Markov model-based polymer assembly from force field-parameterized building blocks*. Journal of Computer-Aided Molecular Design, 29:225-232, 2015.
+
+Depending on the polymer type of interest, the corresponding transition probabilities from one building block to another need to be adjusted in the same config file according to the user's needs. The size of that squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
+
+|Unit| function                          | indegree | outdegree |
+|:---|:----------------------------------|:---------|:----------|
+|GCR | designated root element of G      | 0        | 3         |
+|GCX | branching unit                    | 1        | 2         |
+|GCA | linearly extending unit of type A | 1        | 1         |
+|GCB | linearly extending unit of type B | 1        | 1         |
+|GCL | terminal (leaf) element           | 1        | 0         |
+
+Using that set of five non-physical building blocks derived from glycerol it is possible to build PG polymers with any degree of branching ranging from linear and hyperbranched sequences up to 100% branched dendrimers. Starting with a single root element GCR, the central list L of available binding sites is initialized with three entries (due to indegree 0 and outdegree 3 associated with GCR). With each iteration over that list, another unit is attached to the current one of these sites and the list is updated accordingly. The decision of which unit to choose next is steered through a transition probability matrix P specifying the probability p_ij that block type j is attached to one of the free binding sites of block type i. As consequence, P also affects the extend to which the polymer will be branched. You can produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and fully branched (=dendritic) PG polymers.
+
+
+
+
+
 The main settings falling to the user are listed in a YAML configuration file called `config_user.yml`. At the top of the file, the user choses the type of polymer by setting the YAML variable `polymer.type` to either
 
 |Type                | #blocks | description |
@@ -19,17 +39,11 @@ The main settings falling to the user are listed in a YAML configuration file ca
 |`linearPG-meth-eth` |    6    | methyl/ethyl polyglycerol |
 |`linearPEO`         |    3    | linear polyethylene oxide |
 
-Depending on the polymer type choice, the corresponding transition probabilities from one building block to another need to be adjusted in the same config file according to the user's needs. The size of that squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
 
-|Unit| function                          | indegree | outdegree |
-|----|-----------------------------------|----------|-----------|
-|GCR | designated root element of G      | 0        | 3         |
-|GCX | branching unit                    | 1        | 2         |
-|GCA | linearly extending unit of type A | 1        | 1         |
-|GCB | linearly extending unit of type B | 1        | 1         |
-|GCL | terminal (leaf) element           | 1        | 0         |
 
-Using that set of five non-physical building blocks derived from glycerol it is possible to build PG polymers with any degree of branching ranging from linear and hyperbranched sequences up to 100% branched dendrimers. Starting with a single root element GCR, the central list L of available binding sites is initialized with three entries (due to indegree 0 and outdegree 3 associated with GCR). With each iteration over that list, another unit is attached to the current one of these sites and the list is updated accordingly. The decision of which unit to choose next is steered through a transition probability matrix P specifying the probability p_ij that block type j is attached to one of the free binding sites of block type i. As consequence, P also affects the extend to which the polymer will be branched. You can produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and fully branched (=dendritic) PG polymers.
+
+
+
 
 As an example, in case of an entirely branched polymer (dendrimer), P might look like this
 ```
@@ -63,9 +77,7 @@ transmatrix:
 
 The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
 
-Further technical details are available in the following article that should also be used as a reference:
 
-Vedat Durmaz. *Markov model-based polymer assembly from force field-parameterized building blocks*. Journal of Computer-Aided Molecular Design, 29:225-232, 2015.
 
 
 
