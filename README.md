@@ -108,7 +108,7 @@ Usage
 
 Example command creating a polymer consisting of 50 units 
 
-`../polymer.py 50 polymer.pdb polymer.eps`
+`./polymer.py 50 polymer.pdb polymer.eps`
 
 where a corresponding pdb file and a graph representation in the eps format are generated. Having extended the Gromacs topology directory as described above, the force field parameterization would be accomplished as 
 
