@@ -83,14 +83,14 @@ and set the corresponding environment variable for Gromacs commands
 
 `export GMXLIB=/home/$USER/my-gromacs-top`
 
-Assuming, we want to use the Amber99sb force field, the following files would be extended by the content of the respective files in the "gmx_topology" directory of PolyglycerolModeler:
+Assuming, we want to use the Amber99sb force field, the following files would be extended by the content of the respective files in the "gmx_topology" directory of PolymerAssembler:
 ```
-cat ./PolyglycerolModeler/gmx_topology/residuetypes.dat >> ~/my-gromacs-top/residuetypes.dat
-cat ./PolyglycerolModeler/gmx_topology/specbond.dat >> ~/my-gromacs-top/specbond.dat
-cat ./PolyglycerolModeler/gmx_topology/aminoacids.hdb >> ~/my-gromacs-top/amber99sb.ff/aminoacids.hdb
-cat ./PolyglycerolModeler/gmx_topology/aminoacids.rtp >> ~/my-gromacs-top/amber99sb.ff/aminoacids.rtp
+cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/residuetypes.dat >> ~/my-gromacs-top/residuetypes.dat
+cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/specbond.dat >> ~/my-gromacs-top/specbond.dat
+cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/aminoacids.hdb >> ~/my-gromacs-top/amber99sb.ff/aminoacids.hdb
+cat ./PolymerAssembler/pdb\_units/${poltype}/gmx\_topology/aminoacids.rtp >> ~/my-gromacs-top/amber99sb.ff/aminoacids.rtp
 ```
-In addition, increase the number in the first line of `~/my-gromacs-top/specbond.dat` by 32 (which is the number of newly added special bonds).
+In addition, increase the number in the first line of `~/my-gromacs-top/specbond.dat` by the number of newly added special bonds (lines), e.g. 32 in case of polyglycerol (polymer type "branchedPG" coming with five building blocks).
 
 
 
