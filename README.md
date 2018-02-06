@@ -9,7 +9,7 @@ How PolymerAssembler works
 The main settings falling to the user are listed in the YAML configuration file `config_user.yml`. At the top of the file, the user choses the type of polymer. Currently supported types are:
 
 - `branchedPG` (*n=5* units): linear, hyperbranched or dendritic polyglycerol polymers branched to a specified degree
-- `linearPG_meth-eth` (*n=6* units): linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer. Due to the chiral character of these glycerols central carbon atom, there are two methylized and two ethylized units. 
+- `linearPG-meth-eth` (*n=6* units): linear (via central glycerol oxygen) PG with methyl or ethyl (in random order) attached to the first oxygen of each monomer. Due to the chiral character of these glycerols central carbon atom, there are two methylized and two ethylized units. 
 
 Depending on the choice of the polymer type, the transition probabilities from one building block to another need to be specified in the same config file. The size of the squared matrix is related to the number *n* of units. Let's consider a typical branched polyglycerol (PG) polymer. For PG, a set of five types of building blocks, {GCR,GCX,GCA,GCB,GCL} or {R,X,A,B,L} has been defined from which a new polymer of size *N* (number of monomers) can be assembled as a directed graph G(V,E) without cycles. This set consists of:
 
@@ -24,33 +24,33 @@ Depending on the choice of the polymer type, the transition probabilities from o
 Using that set of five non-physical building blocks derived from glycerol it is possible to build PG polymers with any degree of branching ranging from linear and hyperbranched sequences up to 100% branched dendrimers. Starting with a single root element GCR, the central list L of available binding sites is initialized with three entries (due to indegree 0 and outdegree 3 associated with GCR). With each iteration over that list, another unit is attached to the current one of these sites and the list is updated accordingly. The decision of which unit to choose next is steered through a transition probability matrix P specifying the probability p_ij that block type j is attached to one of the free binding sites of block type i. As consequence, P also affects the extend to which the polymer will be branched. You can produce a linear polymer (apart from the beginning where two of the root element's three sites must be capped by terminal units GCL), various hyperbranched, and fully branched (=dendritic) PG polymers.
 
 As an example, in case of an entirely branched polymer (dendrimer), P might look like this
-
-`transmatrix:`<br />
-`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
-`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
-`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
-`[0.0, 1.0, 0.0, 0.0, 0.0]`<br />
-`[0.0, 0.0, 0.0, 0.0, 0.0]`<br />
-
+```
+transmatrix:
+    - [0.0, 1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0, 0.0]
+    - [0.0, 0.0, 0.0, 0.0, 0.0]
+```
 where the row as well as column order corresponds to the order of the units in the tably above. Each field *P_{ij}* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit of row *i*. That is, due to *P_{iX}=1.0* (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row).
 
 In case of a somehow hyperbranched PG, one would rather choose values such as
-
-`transmatrix:`<br />
-`[0.00, 0.78, 0.10, 0.10, 0.02]`<br />
-`[0.00, 0.60, 0.15, 0.15, 0.10]`<br />
-`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-`[0.00, 0.70, 0.10, 0.10, 0.10]`<br />
-`[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
-
+```
+transmatrix
+    - [0.00, 0.78, 0.10, 0.10, 0.02]
+    - [0.00, 0.60, 0.15, 0.15, 0.10]
+    - [0.00, 0.70, 0.10, 0.10, 0.10]
+    - [0.00, 0.70, 0.10, 0.10, 0.10]
+    - [0.00, 0.00, 0.00, 0.00, 0.00]
+```
 A linear polymer:
 ```
 transmatrix:
-  - [0.0, 0.0, 1.0, 0.0, 0.0]
-  - [0.0, 0.0, 1.0, 0.0, 0.0]
-  - [0.0, 0.0, 1.0, 0.0, 0.0]
-  - [0.0, 0.0, 1.0, 0.0, 0.0]
-  - [0.0, 0.0, 0.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
 
 The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
