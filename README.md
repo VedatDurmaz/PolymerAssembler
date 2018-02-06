@@ -44,6 +44,14 @@ In case of a somehow hyperbranched PG, one would rather choose values such as
 `[0.00, 0.00, 0.00, 0.00, 0.00]`<br />
 
 A linear polymer:
+```
+transmatrix:
+[0.0, 0.0, 1.0, 0.0, 0.0]
+[0.0, 0.0, 1.0, 0.0, 0.0]
+[0.0, 0.0, 1.0, 0.0, 0.0]
+[0.0, 0.0, 1.0, 0.0, 0.0]
+[0.0, 0.0, 0.0, 0.0, 0.0]
+```
 
 `transmatrix:`<br />
 `[0.0, 0.0, 1.0, 0.0, 0.0]`<br />
@@ -69,7 +77,7 @@ On a Ubuntu 16.04 Linux system, three additional libraries, `python-pygraphviz`,
 
 `sudo apt install python-pygraphviz python-biopython python-yaml`
 
-to install both packages and all further dependencies.
+to install these packages and all of their dependencies.
 
 
 #### Modify Gromacs topology files for usage with particular Amber force field
