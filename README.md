@@ -47,7 +47,7 @@ transmatrix:
         - [0.0, 0.0, 0.0, 0.0, 0.0]  (parent unit: GCL)
 (to child: GCR  GCX  GCA  GCB  GCL)  
 ```
-Both row as well as column order correspond to the order of PG units in the table above (also depicted in parentheses). As already mentioned, each field *p<sub>ij</sub>* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit associated with row *i*. That is, due to *p<sub>iX</sub>*=1.0 (ones in the second column), any type *i* of the five units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row). In case of a somehow **hyperbranched** polymer, one would rather choose values such as
+Both row as well as column order correspond to the order of PG units in the table above (also specified in parentheses here). As already mentioned, each field *p<sub>ij</sub>* sepcifies the probability with which the child building block of column *j* will be attached to the parent unit associated with row *i*. That is, due to *p<sub>iX</sub>*=1.0 (ones in the second column), any reasonable type *i* of the PG units is always followed by the second unit type, the branching block X. The first column and last row must always be 0, since the root unit R has no predecessor (first column) and the terminal unit L has no successor (last row). In case of a somehow **hyperbranched polymer**, the corresponding matrix might look like this
 ```
 transmatrix
     branchedPG:
@@ -57,7 +57,7 @@ transmatrix
         - [0.00, 0.70, 0.10, 0.10, 0.10]
         - [0.00, 0.00, 0.00, 0.00, 0.00]
 ```
-whereas a linear polymer could look like this
+where the user has more freedom to play around with the values. And finally, for the purpose of a **linear polymer**, this matrix is useful
 ```
 transmatrix:
     branchedPG:
@@ -67,7 +67,7 @@ transmatrix:
         - [0.0, 0.0, 1.0, 0.0, 0.0]
         - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
-or, alternatively, with the ones in the forth column since both the third and forth column are associated with the linearly extending units GCA and GCB, respectively (indegree=outdegree).
+Alternatively, one could put the ones into the forth column since both the third and forth column are associated with linearly extending units GCA and GCB, respectively (indegree=outdegree). The only difference between these units is that in case of GCA, the C<sub>3</sub> hydroxy group of glycerol is used for the next child whereas with GCB it's the C<sub>2</sub> hydroxy.
 
 
 Prerequisites
@@ -110,6 +110,8 @@ Example command creating a polymer consisting of 50 units
 
 `../polymer.py 50 polymer.pdb polymer.eps`
 
-where a corresponding pdb file and a graph image in the eps format are generated. 
+where a corresponding pdb file and a graph image in the eps format are generated. Having extended the Gromacs topology directory as described above, the force field parameterization would be accomplished as 
+
+`<span style="background-color: #FFFF00">gmx pdb2gmx -f polymer.pdb -o polymer_gmx.pdb -p polymer.top </span>`
 
 To be continued ...
