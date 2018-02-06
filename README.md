@@ -46,11 +46,11 @@ In case of a somehow hyperbranched PG, one would rather choose values such as
 A linear polymer:
 ```
 transmatrix:
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 0.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 0.0, 0.0, 0.0]
 ```
 
 The list L of unsatisfied binding sites may be worked off randomly or following the first in-first out principle resulting in highly spheric/symmetric polymers.
